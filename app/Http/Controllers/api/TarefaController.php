@@ -12,7 +12,8 @@ class TarefaController extends Controller
     // rota principal like?? n entendi praq mas ta ai
     public function index()
     {
-        return Tarefa::all();
+        $tarefas = Tarefa::all();
+        return response()->json($tarefas);
     }
 
     // em teoria cria novas Tarefas
@@ -24,7 +25,10 @@ class TarefaController extends Controller
     // retorna os objetos criados
     public function show($id)
     {
-        return Tarefa::findOrFail($id);
+        $tarefa = Tarefa::findOrFail($id);
+        return response()->json($tarefa);
+
+        // return Tarefa::findOrFail($id);
     }
 
     // update é update, muda blablabla

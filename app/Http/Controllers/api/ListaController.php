@@ -9,16 +9,11 @@ use App\Models\Lista;
 class ListaController extends Controller
 {
 
-    // rota principal like?? n entendi praq mas ta ai
+    // mostra todos os coisas
     public function index()
     {
         $listas = Lista::all();
         return response()->json($listas);
-
-        // return response()->json('ok');
-
-        // $listas = Lista::all();
-        // return response()->json($listas);
     }
 
     // em teoria cria novas listas
@@ -27,10 +22,17 @@ class ListaController extends Controller
         Lista::create($request->all());
     }
 
-    // retorna os objetos criados
+    // procura por um objeto especifico
     public function show($id)
     {
-        return Lista::findOrFail($id);
+        // $lista = Lista::findOrFail($id)->where('id', $id)->first();
+        // if(!$lista){
+        //     return response(['erro'=>'lista ta com deus.']);
+        // }
+        // return response()->json($lista);
+
+        $lista = Lista::findOrFail($id);
+        return response()->json($lista);
     }
 
     // update é update, muda blablabla
@@ -42,6 +44,13 @@ class ListaController extends Controller
 
     public function destroy($id)
     {
+        // $lista = Lista::findOrFail($id)->where('id', $id)->first();
+        // if(!$lista){
+        //     return response(['erro'=>'lista ta com deus.']);
+        // }
+        // $lista->delete();
+        // return response()->json(['sucesso'=>'lista apagada.']);
+
         $lista = Lista::findOrFail($id);
         $lista->delete();
     }
