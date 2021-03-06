@@ -52,8 +52,15 @@ if(isset($_POST['matricula'])){
                 //PEGA CARGA HORARIA DAS DISCIPLINAS
                 $cargasHorarias = array();
                 for ($i = 1; $i <= $n_disciplinas; $i++) {
-                    $carga = $boletins[$i-1]['carga_horaria_cumprida'];
+                    $carga = $boletins[$i-1]['carga_horaria'];
                     $cargasHorarias += [$boletins[$i-1]['codigo_diario'] => $carga];
+                };
+
+                //PEGA CARGA HORARIA CUMPRIDA DAS DISCIPLINAS
+                $cargasHorariasC = array();
+                for ($i = 1; $i <= $n_disciplinas; $i++) {
+                    $cargaC = $boletins[$i-1]['carga_horaria_cumprida'];
+                    $cargasHorariasC += [$boletins[$i-1]['codigo_diario'] => $carga];
                 };
 
                 //PEGA PROFESSORES COM SEUS RESPECTIVOS NOMES E FOTOS
@@ -90,7 +97,8 @@ if(isset($_POST['matricula'])){
                 $_SESSION['foto_url'] = $ft;
                 $_SESSION['disciplinas'] = $boletins;
                 $_SESSION['disciplinas_nomes'] = $disciplinas;
-                $_SESSION['disciplinas_cargasHorarias'] = $cargasHorarias;
+                $_SESSION['disciplinas_cargas_horarias'] = $cargasHorarias;
+                $_SESSION['disciplinas_cargas_horarias_cumpridas'] = $cargasHorariasC;
                 $_SESSION['disciplinas_faltas'] = $faltas;
                 $_SESSION['disciplinas_situacoes'] = $situacoesDisciplinas;
                 $_SESSION['professores'] = $professores;
