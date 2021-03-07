@@ -4,6 +4,24 @@ use Illuminate\Support\Str;
 
 $mysql = 'local_mysql';
 
+if (getenv('APP_ENV')!= 'local') {
+    $url = parse_url(getenv("CLEAR_DATABASE_URL"));
+
+    $host = $url["host"];
+    $username = $url["username"];
+    $password = $url["password"];
+    $database = substr($url["path"], 1);
+
+    $mysql = 'remote_mysql';
+
+} else {
+    $host = "";
+    $username = "";
+    $password = "";
+    $database = "";
+
+} 
+
 return [
 
     /*
