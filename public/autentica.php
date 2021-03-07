@@ -1,8 +1,6 @@
 <?php
-
 require dirname(__DIR__).'../vendor/autoload.php';
 use Ivmelo\SUAP\SUAP;
-
 if(isset($_POST['matricula'])){
 
     try {
