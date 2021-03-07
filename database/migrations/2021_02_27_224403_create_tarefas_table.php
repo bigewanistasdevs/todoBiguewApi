@@ -18,14 +18,10 @@ class CreateTarefasTable extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->boolean('concluida');
-            $table->UnsignedBigInteger('lista');
+            $table->UnsignedBigInteger('lista_id');
             $table->timestamps();
 
-            $table->foreign('lista')
-                ->references('id')
-                ->on('listas')
-                ->onDelete('cascade');
-
+            $table->foreign('lista_id')->references('id')->on('listas');
         });
     }
 

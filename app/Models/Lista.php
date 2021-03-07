@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\Tarefa;
 
 class Lista extends Model
 {
-    // use HasFactory;
+    use HasFactory;
 
     // testando método de modelo com a tarefa como ligação e com fillable
     protected $fillable=[
@@ -21,8 +23,3 @@ class Lista extends Model
     }
 
 }
-
-
-// class Lista extends Authenticatable{
-    
-// }

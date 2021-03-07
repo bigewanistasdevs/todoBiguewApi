@@ -2,17 +2,20 @@
 
 namespace App\Models;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\Lista;
 
 class Tarefa extends Model
 {
-    // use HasFactory;
+    use HasFactory;
 
     // p fazer a ligação com as listas, N SEI SE ESTÁ CORRETO
     protected $fillable=[
         'titulo',
         'descricao',
+        'lista_id',
         'concluida',
     ];
 
@@ -20,8 +23,3 @@ class Tarefa extends Model
         return $this->belongsTo(Lista::class);  
     }
 }
-
-
-// class Tarefa extends Authenticatable {
-
-// }

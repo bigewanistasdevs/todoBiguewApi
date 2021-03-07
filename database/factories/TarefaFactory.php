@@ -27,7 +27,7 @@ class TarefaFactory extends Factory
             'titulo' => $this->faker->catchPhrase(),
             'descricao' => $this->faker->paragraph(),
             'concluida' => $this->faker->boolean(),
-            'lista' => Lista::inRandomOrder()->first()->id,
+            'lista_id' => Lista::inRandomOrder()->first()->id,
         ];
     }
 }
