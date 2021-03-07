@@ -8,8 +8,8 @@ if (getenv('APP_ENV')!= 'local') {
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
     $host = $url["host"];
-    $username = $url["username"];
-    $password = $url["password"];
+    $username = $url["user"];
+    $password = $url["pass"];
     $database = substr($url["path"], 1);
 
     $mysql = 'remote_mysql';
