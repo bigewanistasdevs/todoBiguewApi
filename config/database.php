@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 $mysql = 'local_mysql';
 
 if (getenv('APP_ENV')!= 'local') {
-    $url = parse_url(getenv("CLEAR_DATABASE_URL"));
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
     $host = $url["host"];
     $username = $url["username"];
