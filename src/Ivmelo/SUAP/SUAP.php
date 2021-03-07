@@ -264,4 +264,6 @@ class SUAP
 
         return $data;
     }
+
 }
+return (SUAP());
