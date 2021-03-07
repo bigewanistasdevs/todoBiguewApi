@@ -1,4 +1,6 @@
 <?php
+
+
 // //echo dirname(__DIR__).'/vendor/autoload.php';
 require dirname(__DIR__).'/vendor/autoload.php';
 use Ivmelo\SUAP\SUAP;
@@ -6,8 +8,8 @@ use Ivmelo\SUAP\SUAP;
 try {
     $suap = new SUAP();
     
-    $matricula =  '20161104010011';
-    $senha = '!USBWvai';
+    $matricula =  $request->input('matricula');
+    $senha = $request->input('senha');
 
     //VERIFICA SE MATRÍCULA E SENHA SÃO VÁLIDAS
     if($suap->autenticar($matricula, $senha)){
