@@ -12,12 +12,12 @@ class Tarefa extends Model
     use HasFactory;
 
     // p fazer a ligação com as listas, N SEI SE ESTÁ CORRETO
-    // protected $fillable=[
-    //     'titulo',
-    //     'descricao',
-    //     'lista_id',
-    //     'concluida',
-    // ];
+    protected $fillable=[
+        'titulo',
+        'descricao',
+        'lista_id',
+        'concluida',
+    ];
 
     public function lista(){
         return $this->belongsTo(Lista::class);  
