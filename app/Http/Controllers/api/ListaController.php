@@ -12,8 +12,8 @@ class ListaController extends Controller
     // mostra todos os coisas
     public function index()
     {
-        $listas = Lista::all();
-        return response()->json($listas);
+       $nope = 'Ai não campeão';
+        return response()->json($nope);
     }
 
     // em teoria cria novas listas
@@ -23,16 +23,15 @@ class ListaController extends Controller
     }
 
     // procura por um objeto especifico
-    public function show($id)
+    public function show($matricula)
     {
         // $lista = Lista::findOrFail($id)->where('id', $id)->first();
         // if(!$lista){
         //     return response(['erro'=>'lista ta com deus.']);
         // }
         // return response()->json($lista);
-
-        $lista = Lista::findOrFail($id);
-        return response()->json($lista);
+        $listas = Lista::all()->where('matricula', $matricula);
+        return response()->json($listas);
     }
 
     // update é update, muda blablabla
