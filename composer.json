@@ -42,7 +42,7 @@
 	"psr-0": {
             "Ivmelo\\SUAP": "src/"
         }
-    }, 
+    },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
