@@ -4,6 +4,24 @@ use Illuminate\Support\Str;
 
 $mysql = 'local_mysql';
 
+if (getenv('APP_ENV')!= 'local') {
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $host = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $database = substr($url["path"], 1);
+
+    $mysql = 'remote_mysql';
+
+} else {
+    $host = "";
+    $username = "";
+    $password = "";
+    $database = "";
+
+} 
+
 return [
 
     /*
@@ -43,6 +61,17 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'remote_mysql' => [
+            'driver' => 'mysql',
+            'host' => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
         ],
 
         'local_mysql' => [
