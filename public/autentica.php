@@ -15,8 +15,9 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
         $suap = new SUAP();
 
         //VERIFICA SE MATRÍCULA E SENHA SÃO VÁLIDAS
-        if( $suap->autenticar( $matricula, $senha ) ) {
-
+        if( $data = $suap->autenticar( $matricula, $senha ) ) {
+            //Se não funcionar aqui em cima
+            //$data = $suap->autenticar( $matricula, $senha )
             if($aux){
 
                 $token = $data['token'];
