@@ -25,7 +25,10 @@ class AutenticaController extends Controller
             
             $senha = $request['senha'];
 
-            
+            echo 'matricula - '.$matricula;
+            echo '<br>Senha - '.$senha;
+
+            /*
             try {
                 
                 $suap = new SUAP();
@@ -157,7 +160,7 @@ class AutenticaController extends Controller
                 return false;
         
             }
-            
+            */
         } else {
 
             echo json_encode(
