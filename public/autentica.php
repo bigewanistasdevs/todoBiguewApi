@@ -3,6 +3,13 @@
 require dirname(__DIR__).'/vendor/autoload.php';
 use Ivmelo\SUAP\SUAP;
 
+// print_r( $_POST );
+
+// echo 'opa';
+
+// return true;
+
+/*
 if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isset( $_POST["senha"] ) && !empty( $_POST["senha"] ) ) ) {
     
     $matricula = $_POST['matricula'];
@@ -151,3 +158,4 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
     exit;
 
 }
+*/
