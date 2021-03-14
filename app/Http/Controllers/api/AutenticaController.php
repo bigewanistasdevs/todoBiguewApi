@@ -19,6 +19,10 @@ class AutenticaController extends Controller
     public function store(Request $request)
     {
 
+        echo 'opa';
+
+        return true;
+
         if ( ( isset( $request["matricula"] ) && !empty( $request["matricula"] ) ) && ( isset( $request["senha"] ) && !empty( $request["senha"] ) ) ) {
 
             $matricula = $request['matricula'];
