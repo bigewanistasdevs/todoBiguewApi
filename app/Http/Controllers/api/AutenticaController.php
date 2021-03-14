@@ -19,25 +19,16 @@ class AutenticaController extends Controller
     public function store(Request $request)
     {
 
-        echo 'opa';
-
-        return true;
-
         if ( ( isset( $request["matricula"] ) && !empty( $request["matricula"] ) ) && ( isset( $request["senha"] ) && !empty( $request["senha"] ) ) ) {
 
             $matricula = $request['matricula'];
             
             $senha = $request['senha'];
-
-            echo 'matricula - '.$matricula;
-            echo '<br>Senha - '.$senha;
-
-            /*
+            
             try {
                 
                 $suap = new SUAP();
         
-                
                 //VERIFICA SE MATRÍCULA E SENHA SÃO VÁLIDAS
                 if( $data = $suap->autenticar( $matricula, $senha ) ) {
                         
@@ -164,7 +155,7 @@ class AutenticaController extends Controller
                 return false;
         
             }
-            */
+            
         } else {
 
             echo json_encode(
