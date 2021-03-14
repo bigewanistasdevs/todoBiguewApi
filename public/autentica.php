@@ -2,14 +2,13 @@
 
 require dirname(__DIR__).'/vendor/autoload.php';
 use Ivmelo\SUAP\SUAP;
-$varAux = true;
+
 if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isset( $_POST["senha"] ) && !empty( $_POST["senha"] ) ) ) {
     
     $matricula = $_POST['matricula'];
     
     $senha = $_POST['senha'];
     
-    $aux = true;
     try {
         
         $suap = new SUAP();
@@ -18,13 +17,13 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
         if( $data = $suap->autenticar( $matricula, $senha ) ) {
             //Se não funcionar aqui em cima
             //$data = $suap->autenticar( $matricula, $senha )
-            if($aux){
+            if ( isset( $_POST["type"] ) && !empty( $_POST["type"] ) && $_POST["type"] == "autenticate" ) {
 
                 $token = $data['token'];
 
                 echo json_encode($token);
 
-            }else{
+            } else if ( isset( $_POST["type"] ) && !empty( $_POST["type"] ) && $_POST["type"] == "data" ) {
                 
                 //INFORMA QUE É UM ALUNO QUE ESTÁ FAZENDO O LOGIN
                 if ( strlen( $matricula ) == 14 ) {
