@@ -90,6 +90,8 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
                     "email" => $meusDados["email"],
                     "vinculo" => $meusDados["tipo_vinculo"],
                     "situacao" => $meusDados["vinculo"]["situacao"],
+                    "campus" => $meusDados["vinculo"]["campus"],
+                    "curso" => $meusDados["vinculo"]["curso"],
                     "foto" => $ft,
                     "numero_disciplinas" => $n_disciplinas,
                     "disciplinas" => array(
