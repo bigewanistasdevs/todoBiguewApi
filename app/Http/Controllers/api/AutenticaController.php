@@ -22,7 +22,7 @@ class AutenticaController extends Controller
             $matricula = $request['matricula'];
             
             $senha = $request['senha'];
-            
+
             try {
                 
                 $suap = new SUAP();
@@ -122,9 +122,7 @@ class AutenticaController extends Controller
                         );
         
                         echo json_encode($dadosUsuario);
-        
-                        return true;
-            
+                    
                     //CASO UM PROFESSOR REALIZE O LOGIN
                     } else if ( strlen( $matricula ) == 7 ) {
             
@@ -134,9 +132,7 @@ class AutenticaController extends Controller
                         );
                         
                         echo json_encode($dadosUsuario);
-                        
-                        return true;
-        
+                                
                     };
         
                 }
@@ -149,11 +145,9 @@ class AutenticaController extends Controller
                         "error" => "Falha ao tentar fazer login! Verifique sua matrícula e senha, depois tente novamente."
                     ]
                 );
-        
-                return false;
-        
+                
             }
-        
+       
         } else {
 
             echo json_encode(
@@ -162,8 +156,6 @@ class AutenticaController extends Controller
                 ]
             );
             
-            return false;
-
         }
 
     }
