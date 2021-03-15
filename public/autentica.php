@@ -88,7 +88,8 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
                     "matricula" => $matricula,
                     "nome" => $meusDados["nome_usual"],
                     "email" => $meusDados["email"],
-                    "vinculo" => $meusDados["vinculo"]["situacao"],
+                    "vinculo" => $meusDados["tipo_vinculo"],
+                    "situacao" => $meusDados["vinculo"]["situacao"],
                     "foto" => $ft,
                     "numero_disciplinas" => $n_disciplinas,
                     "disciplinas" => array(
