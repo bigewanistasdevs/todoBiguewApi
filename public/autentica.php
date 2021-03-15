@@ -60,7 +60,7 @@ if ( ( isset( $_POST["matricula"] ) && !empty( $_POST["matricula"] ) ) && ( isse
                     $cargasHorarias += [$boletins[$i]['codigo_diario'] => $carga];
     
                     $cargaC = $boletins[$i]['carga_horaria_cumprida'];
-                    $cargasHorariasC += [$boletins[$i]['codigo_diario'] => $carga];
+                    $cargasHorariasC += [$boletins[$i]['codigo_diario'] => $cargaC];
                 };
     
                 //PEGA INFORMAÇÕES DOS PROFESSORES
