@@ -25,13 +25,19 @@ class ListaController extends Controller
     // procura por um objeto especifico
     public function show($matricula)
     {
-        // $lista = Lista::findOrFail($id)->where('id', $id)->first();
+        ///$lista = Lista::findOrFail($id)->where('id', $id)->first();
         // if(!$lista){
         //     return response(['erro'=>'lista ta com deus.']);
         // }
         // return response()->json($lista);
         $listas = Lista::all()->where('matricula', $matricula);
-        return response()->json($listas);
+        // return response()->json($listas);
+        $response = [];
+        foreach($listas as $info):
+            array_push($response, $info);
+        endforeach;
+        return $response;
+
     }
 
     // update é update, muda blablabla
