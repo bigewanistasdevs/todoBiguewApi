@@ -67,7 +67,7 @@ class AutenticaController extends Controller
                             $cargasHorarias += [$boletins[$i]['codigo_diario'] => $carga];
             
                             $cargaC = $boletins[$i]['carga_horaria_cumprida'];
-                            $cargasHorariasC += [$boletins[$i]['codigo_diario'] => $carga];
+                            $cargasHorariasC += [$boletins[$i]['codigo_diario'] => $cargaC];
                         };
             
                         //PEGA INFORMAÇÕES DOS PROFESSORES
@@ -95,7 +95,10 @@ class AutenticaController extends Controller
                             "matricula" => $matricula,
                             "nome" => $meusDados["nome_usual"],
                             "email" => $meusDados["email"],
-                            "vinculo" => $meusDados["vinculo"]["situacao"],
+                            "vinculo" => $meusDados["tipo_vinculo"],
+                            "situacao" => $meusDados["vinculo"]["situacao"],
+                            "campus" => $meusDados["vinculo"]["campus"],
+                            "curso" => $meusDados["vinculo"]["curso"],
                             "foto" => $ft,
                             "numero_disciplinas" => $n_disciplinas,
                             "disciplinas" => array(
