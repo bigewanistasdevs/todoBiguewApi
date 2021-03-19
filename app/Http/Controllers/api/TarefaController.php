@@ -9,38 +9,212 @@ use App\Models\Tarefa;
 class TarefaController extends Controller
 {
 
-    // rota principal like?? n entendi praq mas ta ai
-    public function index()
+    /* *
+     * 
+     * pega todas as tarefas nao concluidas da 
+     * lista
+     * 
+     * tipo: GET
+     * url: /api/tarefas/?lista={lista}
+     * parametros:
+     *  - id da lista
+     * 
+     * */
+    public function index(Request $request)
     {
-        $tarefas = Tarefa::all();
-        return response()->json($tarefas);
-    }
+        try {
 
-    // em teoria cria novas Tarefas
+            $tarefa = Tarefa::all()
+                ->where('lista_id', $request['lista'])
+                ->where('concluida', '0');
+    
+            return $tarefa;
+
+        } catch (\Exception $e) {
+           
+            return  response()->json(
+                [
+                    'error' => 'Falha ao buscar tarefas.'
+                ]
+            );
+
+        }
+    }
+    
+    /* *
+     * 
+     * Cadastrar nova lista
+     * 
+     * tipo: POST
+     * url: /api/tarefas/
+     * parametros:
+     *  - titulo
+     *  - descricao
+     *  - id da lista 
+     * 
+     * */
     public function store(Request $request)
     {
-        Tarefa::create($request->all());
+        try {
+
+            $tarefa = Tarefa::create($request->all());
+
+            $tarefaAuxiliar = json_decode( $tarefa );
+
+            if ( isset( $tarefaAuxiliar->id ) && !empty( $tarefaAuxiliar->id ) ) {
+                $response = [
+                    'success' => 'Tarefa cadastrada com sucesso.'
+                ];
+            } else {
+                $response = [
+                    'error' => 'Falha ao cadastrar tarefa.'
+                ];
+            }
+
+            return response()->json($response);
+
+        
+        } catch (\Exception $e) {
+
+            return response()->json(
+                [
+                    'error' => 'Falha ao cadastrar tarefa.'
+                ]
+            );
+
+        }
+
     }
 
-    // retorna os objetos criados
+    /* *
+     * 
+     * Trazer informações da tarefa a partir
+     * do ID dela
+     * 
+     * tipo: GET
+     * url: /api/tarefas/{tarefas}
+     * parametros:
+     *  - id da tarefas
+     * 
+     */
     public function show($id)
     {
-        $tarefa = Tarefa::findOrFail($id);
-        return response()->json($tarefa);
+        try {
 
-        // return Tarefa::findOrFail($id);
+            $tarefa = Tarefa::where('concluida', '0')->findOrFail($id);
+            
+            $tarefaAuxiliar = json_decode( $tarefa );
+
+            if ( isset( $tarefaAuxiliar->id ) && !empty( $tarefaAuxiliar->id ) ) {
+                $response = $tarefa;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Tarefa não encontrada.'
+                    ]
+                );
+            }
+
+            return $response;
+            
+        } catch (\Exception $e) {
+           
+            return  response()->json(
+                [
+                    'error' => 'Falha ao buscar dados da tarefa.'
+                ]
+            );
+
+        }
     }
 
-    // update é update, muda blablabla
+    /* *
+     * 
+     * Atualiza as informações da tarefa
+     * 
+     * tipo: PUT
+     * url: /api/tarefas/{tarefa}?titulo={titulo}&descricao={descricao}
+     * parametros:
+     *  - id da tarefa
+     *  - titulo
+     *  - descricao
+     * 
+     */
     public function update(Request $request, $id)
     {
-        $tarefa = Tarefa::findOrFail($id);
-        $tarefa->update($request->all());
+        try {
+
+            $tarefa = Tarefa::where('concluida', '0')->findOrFail($id);
+            $tarefa->update($request->all());
+
+            $tarefaAuxiliar = json_decode( $tarefa );
+
+            if ( isset( $tarefaAuxiliar->id ) && !empty( $tarefaAuxiliar->id ) ) {
+                $response = $tarefa;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Tarefa não encontrada.'
+                    ]
+                );
+            }
+
+            return $response;
+
+        } catch (\Exception $e) {
+           
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar atualizar tarefa.'
+                ]
+            );
+
+        }
     }
 
-    public function destroy($id)
+    /* *
+     * 
+     * Apaga a tarefa
+     * 
+     * tipo: DELETE
+     * url: /api/tarefas/{tarefa}?concluida={concluida}
+     * parametros:
+     *  - id da tarefa
+     *  - concluida
+     * 
+     */
+    public function destroy(Request $request, $id)
     {
-        $tarefa = Tarefa::findOrFail($id);
-        $tarefa->delete();
+        
+        try {
+
+            $tarefa = Tarefa::where('concluida', '0')->findOrFail($id);
+            $tarefa->update($request->all());
+
+            $tarefaAuxiliar = json_decode( $tarefa );
+
+            if ( isset( $tarefaAuxiliar->id ) && !empty( $tarefaAuxiliar->id ) ) {
+                $response = $tarefa;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Tarefa não encontrada.'
+                    ]
+                );
+            }
+
+            return $response;
+
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar deletar tarefa.'
+                ]
+            );
+
+        }
+
     }
+
 }

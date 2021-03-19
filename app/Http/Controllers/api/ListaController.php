@@ -9,48 +9,207 @@ use App\Models\Lista;
 class ListaController extends Controller
 {
 
-    // mostra todos os coisas
-    public function index()
+    /* *
+     * 
+     * pega todas as listas nao concluidas do 
+     * usuario da matricula repassada
+     * 
+     * tipo: GET
+     * url: /api/listas/?matricula={matricula}
+     * parametros:
+     *  - matricula
+     * 
+     * */
+    public function index(Request $request)
     {
-       $nope = 'Ai não campeão';
-        return response()->json($nope);
+        try {
+            
+            $listas = Lista::all()
+                ->where('matricula', $request['matricula'])
+                ->where('concluida', '0');
+    
+            return $listas;
+
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar buscar listas.'
+                ]
+            );
+
+        }
     }
 
-    // em teoria cria novas listas
+    /* *
+     * 
+     * Cadastrar nova lista
+     * 
+     * tipo: POST
+     * url: /api/listas/
+     * parametros:
+     *  - matricula
+     *  - nome
+     * 
+     * */
     public function store(Request $request)
     {
-        Lista::create($request->all());
+        try {
+
+            $lista = Lista::create($request->all());
+
+            $listaAuxiliar = json_decode( $lista );
+
+            if ( isset( $listaAuxiliar->id ) && !empty( $listaAuxiliar->id ) ) {
+                $response = [
+                    'success' => 'Lista cadastrada com sucesso.'
+                ];
+            } else {
+                $response = [
+                    'error' => 'Falha ao cadastrar lista.'
+                ];
+            }
+
+            return response()->json($response);
+        
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar cadastrar lista.'
+                ]
+            );
+
+        }
     }
 
-    // procura por um objeto especifico
-    public function show($matricula)
+    /* *
+     * 
+     * Trazer informações da lista a partir
+     * do ID informado
+     * 
+     * tipo: GET
+     * url: /api/listas/{lista}
+     * parametros:
+     *  - id da lista
+     * 
+     */
+    public function show($id)
     {
-        // $lista = Lista::findOrFail($id)->where('id', $id)->first();
-        // if(!$lista){
-        //     return response(['erro'=>'lista ta com deus.']);
-        // }
-        // return response()->json($lista);
-        $listas = Lista::all()->where('matricula', $matricula);
-        return response()->json($listas);
+        try {
+
+            $lista = Lista::where('concluida', '0')->findOrFail($id);
+            
+            $listaAuxiliar = json_decode( $lista );
+    
+            if ( isset( $listaAuxiliar->id ) && !empty( $listaAuxiliar->id ) ) {
+                $response = $lista;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Lista não encontrada.'
+                    ]
+                );
+            }
+    
+            return $response;
+
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar buscar dados da lista.'
+                ]
+            );
+
+        }
     }
 
-    // update é update, muda blablabla
+    /* *
+     * 
+     * Atualiza as informações da lista
+     * 
+     * tipo: PUT
+     * url: /api/listas/{lista}?nome={nome}
+     * parametros:
+     *  - id da lista
+     *  - nome
+     * 
+     */
     public function update(Request $request, $id)
     {
-        $lista = Lista::findOrFail($id);
-        $lista->update($request->all());
+        try {
+
+            $lista = Lista::where('concluida', '0')->findOrFail($id);
+            $lista->update($request->all());
+
+            $listaAuxiliar = json_decode( $lista );
+
+            if ( isset( $listaAuxiliar->id ) && !empty( $listaAuxiliar->id ) ) {
+                $response = $lista;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Lista não encontrada.'
+                    ]
+                );
+            }
+
+            return $response;
+
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar atualizar lista.'
+                ]
+            );
+
+        }
     }
 
-    public function destroy($id)
+    /* *
+     * 
+     * Apaga a lista
+     * 
+     * tipo: DELETE
+     * url: /api/listas/{lista}?concluida={concluida}
+     * parametros:
+     *  - id da lista
+     *  - concluida
+     * 
+     */
+    public function destroy(Request $request, $id)
     {
-        // $lista = Lista::findOrFail($id)->where('id', $id)->first();
-        // if(!$lista){
-        //     return response(['erro'=>'lista ta com deus.']);
-        // }
-        // $lista->delete();
-        // return response()->json(['sucesso'=>'lista apagada.']);
+        try {
 
-        $lista = Lista::findOrFail($id);
-        $lista->delete();
+            $lista = Lista::where('concluida', '0')->findOrFail($id);
+            $lista->update($request->all());
+    
+            $listaAuxiliar = json_decode( $lista );
+    
+            if ( isset( $listaAuxiliar->id ) && !empty( $listaAuxiliar->id ) ) {
+                $response = $lista;
+            } else {
+                $response = json_encode(
+                    [
+                        'error' => 'Lista não encontrada.'
+                    ]
+                );
+            }
+    
+            return $response;
+
+        } catch (\Exception $e) {
+            
+            return  response()->json(
+                [
+                    'error' => 'Falha ao tentar deletar lista.'
+                ]
+            );
+
+        }
     }
+
+
 }
