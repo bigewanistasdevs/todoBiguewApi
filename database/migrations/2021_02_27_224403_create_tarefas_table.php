@@ -17,7 +17,7 @@ class CreateTarefasTable extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('descricao');
-            $table->boolean('concluida');
+            $table->boolean('concluida')->default(0);;
             $table->UnsignedBigInteger('lista_id');
             $table->timestamps();
 

@@ -12,7 +12,7 @@ class ListaController extends Controller
     // mostra todos os coisas
     public function index()
     {
-       $nope = 'Ai não campeão';
+        $nope = 'Ai não campeão';
         return response()->json($nope);
     }
 

@@ -16,10 +16,10 @@ class CreateListasTable extends Migration
         Schema::create('listas', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('matricula')->nullable();
+            $table->string('matricula', 50)->nullable();
 
             $table->string('nome');
-            $table->boolean('concluida');
+            $table->boolean('concluida')->default(0);
             $table->timestamps();
         });
     }
