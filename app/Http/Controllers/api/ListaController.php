@@ -22,7 +22,6 @@ class ListaController extends Controller
      * */
     public function index(Request $request)
     {
-<<<<<<< HEAD
         try {
             
             $listas = Lista::all()
@@ -40,10 +39,6 @@ class ListaController extends Controller
             );
 
         }
-=======
-        $nope = 'Ai não campeão';
-        return response()->json($nope);
->>>>>>> 5b080d4f85210ab1f1914c91a01e9b32b89f5440
     }
 
     /* *
@@ -101,7 +96,6 @@ class ListaController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
         try {
 
             $lista = Lista::where('concluida', '0')->findOrFail($id);
@@ -129,21 +123,6 @@ class ListaController extends Controller
             );
 
         }
-=======
-        ///$lista = Lista::findOrFail($id)->where('id', $id)->first();
-        // if(!$lista){
-        //     return response(['erro'=>'lista ta com deus.']);
-        // }
-        // return response()->json($lista);
-        $listas = Lista::all()->where('matricula', $matricula);
-        // return response()->json($listas);
-        $response = [];
-        foreach($listas as $info):
-            array_push($response, $info);
-        endforeach;
-        return $response;
-
->>>>>>> 5b080d4f85210ab1f1914c91a01e9b32b89f5440
     }
 
     /* *
