@@ -79,13 +79,18 @@ class AutenticaController extends Controller
                             $disciplina = $sigla." - ".$nome;
                             for ($j = 0; $j < $n_disciplinas; $j++) {
                                 if($disciplina==$disciplinas[$boletins[$j]['codigo_diario']]){
-                                    $prof_n = $suap->getTurmaVirtual($turmasVirtuais[$i]['id']);
-                                    $profn = $prof_n['professores'][0]['nome'];
+                                    $prof = $suap->getTurmaVirtual($turmasVirtuais[$i]['id']);
+
+                                    $profn = $prof['professores'][0]['nome'];
                                     $professores_nomes += [$boletins[$j]['codigo_diario'] => $profn];
-            
-                                    $prof_ft = $suap->getTurmaVirtual($turmasVirtuais[$i]['id']);
-                                    $proft = 'https://suap.ifrn.edu.br'.$prof_ft['professores'][0]['foto'];
+
+                                    $proft = 'https://suap.ifrn.edu.br'.$prof['professores'][0]['foto'];
                                     $professores_fotos += [$boletins[$j]['codigo_diario'] => $proft];
+
+                                    $profe = $prof['professores'][0]['email'];
+                                    $professores_emails += [$boletins[$j]['codigo_diario'] => $profe];
+
+
                                 };
                             };
                         };
@@ -119,8 +124,11 @@ class AutenticaController extends Controller
                             "professores_nomes" => array(
                                 "codigo_diario" => $professores_nomes
                             ),
-                            "professores" => array(
+                            "professores_fotos" => array(
                                 "codigo_diario" => $professores_fotos
+                            ),
+                            "professores_emails" => array(
+                                "codigo_diario" => $professores_emails
                             ),
                         );
         
