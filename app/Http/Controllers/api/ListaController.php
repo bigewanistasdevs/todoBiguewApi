@@ -28,7 +28,19 @@ class ListaController extends Controller
                 ->where('matricula', $request['matricula'])
                 ->where('concluida', '0');
     
-            return $listas;
+            $listaAux = [];
+
+            foreach( $listas as $dados ):
+                array_push(
+                    $listaAux,
+                    [
+                        "id" => $dados->id,
+                        "nome" => $dados->nome
+                    ]
+                );
+            endforeach;
+
+            return $listaAux;
 
         } catch (\Exception $e) {
             

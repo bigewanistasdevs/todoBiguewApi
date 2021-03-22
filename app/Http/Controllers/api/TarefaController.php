@@ -28,7 +28,19 @@ class TarefaController extends Controller
                 ->where('lista_id', $request['lista'])
                 ->where('concluida', '0');
     
-            return $tarefa;
+            $tarefaAux = [];
+
+            foreach( $tarefa as $dados ):
+                array_push(
+                    $tarefaAux,
+                    [
+                        "id" => $dados->id,
+                        "titulo" => $dados->titulo
+                    ]
+                );
+            endforeach;
+
+            return $tarefaAux;
 
         } catch (\Exception $e) {
            
