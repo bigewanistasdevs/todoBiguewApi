@@ -73,6 +73,7 @@ class AutenticaController extends Controller
                         //PEGA INFORMAÇÕES DOS PROFESSORES
                         $professores_nomes = array();
                         $professores_fotos = array();
+                        $professores_emails = array();
                         for ($i = 0; $i < $n_disciplinas; $i++) {
                             $sigla = $turmasVirtuais[$i]['sigla'];
                             $nome = $turmasVirtuais[$i]['descricao'];

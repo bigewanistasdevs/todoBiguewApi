@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('envio-email', function(Request $request) {
-    
+
     $user = new stdClass();
     $user->nome_prof = $request["nome_prof"];
     $user->email_prof = $request["email_prof"];
