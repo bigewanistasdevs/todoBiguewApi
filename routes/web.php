@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('envio-email', function(Request $request){
+Route::get('envio-email', function(Request $request){
 		
     $user = new stdClass();
     // $user->nome_prof = $request["nome_prof"];
