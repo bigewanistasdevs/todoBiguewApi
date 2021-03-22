@@ -7,4 +7,5 @@
 <p>Caro professor(a) {{$user->nome_prof}}, {{$user->corpo}}.</p>
 <br>
 <p>ateciosamente, {{$user->aluno}} </p>
+
 @endcomponent

@@ -31,12 +31,13 @@ class newLaravelTips extends Mailable
     public function build()
     {
         $this->subject($this->user->assunto);
-		// $this->to($this->user->email_prof, $this->user->nome_prof);
-		$this->to($this->user->email_prof);
+        // $this->subject("conteudo heheh");
+		$this->to($this->user->email_prof, $this->user->nome_prof);
+		// $this->to($this->user->email_prof);
+        
+        return $this->markdown( 'mail.newLaravelTips', [
+            'user' => $this->user
+        ]);
 
-
-        return $this->markdown(view:'mail.newLaravelTips', [
-            'user' => $this-> user
-        ])
     }
 }
