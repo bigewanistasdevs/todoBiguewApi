@@ -23,11 +23,11 @@ Route::get('/', function () {
 Route::post('envio-email', function(Request $request){
 		
     $user = new stdClass();
-    $user->nome_prof = $request["nome_prof"];
+    // $user->nome_prof = $request["nome_prof"];
     $user->email_prof = $request["email_prof"];
-    $user->aluno = $request["aluno"];
+    // $user->aluno = $request["aluno"];
     $user->assunto = $request["assunto"];
-    $user->corpo = $request["corpo"];
+    // $user->corpo = $request["corpo"];
 
     // retorna uma página p ve a msg do email
     return new \App\Mail\newLaravelTips($user);
