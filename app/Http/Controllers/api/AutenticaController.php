@@ -91,7 +91,6 @@ class AutenticaController extends Controller
                                     $profe = $prof['professores'][0]['email'];
                                     $professores_emails += [$boletins[$j]['codigo_diario'] => $profe];
 
-
                                 };
                             };
                         };
