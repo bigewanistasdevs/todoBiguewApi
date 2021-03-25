@@ -55,7 +55,7 @@ class TarefaController extends Controller
     
     /* *
      * 
-     * Cadastrar nova lista
+     * Cadastrar nova tarefa
      * 
      * tipo: POST
      * url: /api/tarefas/
@@ -79,7 +79,7 @@ class TarefaController extends Controller
                 ];
             } else {
                 $response = [
-                    'error' => 'Falha ao cadastrar tarefa.'
+                    'error' => 'Falha ao cadastrar tarefa. 1'
                 ];
             }
 
@@ -90,7 +90,7 @@ class TarefaController extends Controller
 
             return response()->json(
                 [
-                    'error' => 'Falha ao cadastrar tarefa.'
+                    'error' => 'Falha ao cadastrar tarefa.',
                 ]
             );
 
